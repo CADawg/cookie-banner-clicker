@@ -66,10 +66,12 @@ function App() {
         e.stopPropagation();
 
       if (initialFailCheck) {
-         setIsNinePlusTenTwentyOne(true);
+        setIsNinePlusTenTwentyOne(true);
 
         return;
       }
+
+      setIsNinePlusTenTwentyOne(false);
 
       setGameLevel(1);
   }
