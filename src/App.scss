@@ -172,3 +172,134 @@ a {
       border-radius: 5px;
     }
 }
+
+.bottom-panel {
+  user-select: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 10px;
+    z-index: 100;
+
+   h1 {
+     margin: 2px;
+   }
+
+    p {
+        margin: 2px;
+    }
+
+    .choices {
+      border: 1px solid black;
+      display: flex;
+
+      .spacer {
+        flex-grow: 1;
+      }
+
+      .choice {
+        display: inline-block;
+        margin-right: 20px;
+      }
+    }
+
+  .choices-buttons {
+    display: inline-block;
+    margin: 0;
+
+
+  }
+
+  button {
+    background-color: green;
+    color: white;
+    margin: 0;
+
+    padding: 2px 5px;
+    border-radius: 0;
+    height: 28px;
+    font-size: 16px;
+
+    margin-left: 20px;
+
+
+    &.grey {
+      background-color: transparent;
+      color: #111;
+      text-decoration: underline;
+    }
+  }
+
+
+}
+
+.game-status {
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+
+  width: 500px;
+  margin: 10px auto 0;
+
+  a {
+    display: block;
+  }
+
+  p {
+    margin: 4px 0;
+  }
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.middle-panel {
+    display: block;
+  user-select: none;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+
+  width: 500px;
+  margin: 10px auto 0;
+
+  h1 {
+    margin: 2px;
+  }
+
+  .company p {
+    font-weight: bold;
+    margin: 20px 0 0;
+  }
+
+  p.description {
+    font-size: 14px;
+    margin: 2px 0 0;
+  }
+
+  p.header-text {
+    margin: 2px;
+  }
+
+  label {
+    margin: 2px;
+  }
+
+  a {
+    display: block;
+  }
+
+  &.hidden {
+    display: none;
+  }
+}

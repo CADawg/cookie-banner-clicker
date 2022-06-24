@@ -4,6 +4,7 @@ import webp from './photos/cookie.webp';
 import jpg from './photos/cookie.jpg';
 import {faTrophy} from '@fortawesome/free-solid-svg-icons/faTrophy';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import GameLevel from "./GameLevels";
 
 interface IPlayer {
     name: string;
@@ -48,10 +49,10 @@ function Checkbox(props: {label?: string, checked: boolean, setChecked: (checked
 }
 
 function App() {
-  const [leaderboard, setLeaderboard] = React.useState<IPlayer[]>([
-      {name: "Player 1", identifier: "player1", score: 0},
-        {name: "Player 2", identifier: "player2", score: 0},
-        {name: "Player 3", identifier: "player3", score: 0},
+  const [leaderboard] = React.useState<IPlayer[]>([
+      {name: "Doesn't work", identifier: "player1", score: 0},
+        {name: "Too Lazy To Code it", identifier: "player2", score: 0},
+        {name: "Sorry!", identifier: "player3", score: 0},
         {name: "Player 4", identifier: "player4", score: 0},
         {name: "Player 5", identifier: "player5", score: 0},
         {name: "Player 6", identifier: "player6", score: 0},
@@ -76,13 +77,13 @@ function App() {
       setGameLevel(1);
   }
 
-  const [currentScore, setCurrentScore] = React.useState(0);
-
   const [initialFailCheck, setInitialFailCheck] = React.useState(true);
 
   const [isNinePlusTenTwentyOne, setIsNinePlusTenTwentyOne] = React.useState(false);
 
   const [gameLevel, setGameLevel] = React.useState(0);
+
+  const [failed, setFailed] = React.useState(false);
 
   return (
     <div className="App">
@@ -90,19 +91,27 @@ function App() {
           <div className={"nav-brand"}>Cookie Clicker</div>
         </nav>
 
-        <div className={"olay-70"}>
+
+        {failed ? null : gameLevel === 0 ? <div className={"olay-70"}>
+
             <div className={"olay-content"}>
                 <h1>Cookie (Banner) Clicker</h1>
-                <p>A really dumb idea by <a href={"https://github.com/Snaddyvitch-Dispenser"} rel="noreferrer" target={"_blank"}>Snaddyvitch-Dispenser</a></p>
-                <p>Click through as many cookie banners as you can <strong>without</strong> accepting <strong>any</strong> cookies.</p>
+                <p>A really dumb idea by <a href={"https://github.com/Snaddyvitch-Dispenser"} rel="noreferrer"
+                                            target={"_blank"}>Snaddyvitch-Dispenser</a></p>
+                <p>Click through as many cookie banners as you
+                    can <strong>without</strong> accepting <strong>any</strong> cookies.</p>
 
-                {/*checkbox*/}
-                <Checkbox label={"Accept Cookies"} checked={initialFailCheck} setChecked={(checked: boolean) => {setInitialFailCheck(checked)}} />
+                <Checkbox label={"Accept Cookies"} checked={initialFailCheck} setChecked={(checked: boolean) => {
+                    setInitialFailCheck(checked)
+                }}/>
 
                 <button onClick={Play}>Let's Go!</button>
-                <p className={"error"} style={{display: isNinePlusTenTwentyOne ? "block" : "none"}}>You have to uncheck the "Accept Cookies" box!</p>
+                <p className={"error"} style={{display: isNinePlusTenTwentyOne ? "block" : "none"}}>You have to uncheck
+                    the "Accept Cookies" box!</p>
             </div>
+
         </div>
+        : <GameLevel level={gameLevel} setLevel={setGameLevel} setFailed={setFailed} />}
 
 
         <div className={"container"}>
@@ -129,6 +138,12 @@ function App() {
                         </div>
                     ))}
                 </div>
+            </div>
+
+            <div className={"game-status " + (failed ? "shown" : "hidden")}>
+                {gameLevel === 4 ? <p>You beat the whole game (well as much as I cared to finish)!</p> : <p>You beat {gameLevel - 1} levels of the game! Congratulations!</p>}
+                <p>If you want me to add more levels, let me know on the GitHub. If enough people want more, I'll make it!</p>
+                <a href={"https://github.com/Snaddyvitch-Dispenser/cookie-banner-clicker"} target={"_blank"} rel="noreferrer">Visit this project on GitHub to view the code and contribute!</a>
             </div>
         </div>
     </div>
