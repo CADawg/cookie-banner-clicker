@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"net/mail"
-	"os"
 
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/core"
@@ -56,7 +55,7 @@ func (e *EmailService) SendModerationEmail(id, name string, score int, levelsCom
 	approveSignature := signer.generateSignature("approve", id)
 	deleteSignature := signer.generateSignature("delete", id)
 
-	baseURL := os.Getenv("BASE_URL")
+	baseURL := e.app.Settings().Meta.AppURL
 	if baseURL == "" {
 		baseURL = "http://localhost:8080" // Default for development
 	}
